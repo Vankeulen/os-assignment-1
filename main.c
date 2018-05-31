@@ -16,7 +16,7 @@ int main() {
         // child process
         assert(pid == 0);
         execl("/bin/sh", "sh", "-c", "./counter 5", (char*)0);
-        
+        perror("execl");
     } else {
         // parent process
         assert(printf("Child PID: %d\nParent PID:%d\n", pid, parent) > 0);
