@@ -1,9 +1,11 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/types.h>
-#include<sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-#include<unistd.h>
+#include <unistd.h>
+
+#include <assert.h>
 
 int main() {
     pid_t parent = getpid();
@@ -12,13 +14,14 @@ int main() {
         
     if (pid == 0) {
         // child process
+        assert(pid == 0);
         execl("/bin/sh", "sh", "-c", "./counter 5", (char*)0);
         
     } else {
         // parent process
-        printf("Child PID: %d\nParent PID:%d\n", pid, parent);
+        assert(printf("Child PID: %d\nParent PID:%d\n", pid, parent) > 0);
         
-        wait(&status);
+        assert(wait(&status) != 0);
         
         if (WIFEXITED(status)) {
             status = WEXITSTATUS(status);
@@ -26,7 +29,7 @@ int main() {
         
     
     }
-    printf("Process %d exited with status %d\n", pid, status);
+    assert(printf("Process %d exited with status %d\n", pid, status) > 0);
         
     return 0;
 }
