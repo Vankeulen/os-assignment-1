@@ -3,7 +3,6 @@
 #include <stdlib.h>     /* strtol */
 #include <sys/types.h>
 #include <unistd.h>
-
 #include <assert.h>
 
 int main(int argc, char *argv[]) {
