@@ -8,7 +8,8 @@
 int main(int argc, char *argv[]) {
     
     pid_t pid = getppid();
-
+    assert(pid);
+    
     int num = 0;
     if (argc >= 2) {
         num = (int)strtol(argv[1], NULL, 10);

@@ -1,1 +1,1 @@
-gcc -o counter counter.c && gcc -o main main.c && ./main
+gcc -Wall -o counter counter.c && gcc -o main main.c && ./main
